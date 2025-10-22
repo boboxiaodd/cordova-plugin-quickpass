@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-yidun-quickpass" version="1.2.8">
+  <name>cordova-plugin-yidun-quickpass</name>
+  <!--js调用模块;src为js文件路径-->
+  <js-module name="cordova-plugin-yidun-quickpass" src="www/cordova-plugin-yidun-quickpass.js">
+    <!--调用前缀-->
+    <clobbers target="window.YidunQuickPass"/> 
+  </js-module>
+  <platform name="android"> 
+    <framework src="src/android/faceplatform-release.gradle" custom="true" type="gradleReference"/>
+    <source-file src="src/android/JsonConfigParser.java" target-dir="src/com/netease/nis/quicklogin/cordovaplugin"/>  
+    <source-file src="src/android/KeepAliveCallbackContext.java" target-dir="src/com/netease/nis/quicklogin/cordovaplugin"/>  
+    <source-file src="src/android/QuickLoginPlugin.java" target-dir="src/com/netease/nis/quicklogin/cordovaplugin"/>  
+    <framework src="io.github.yidun:quicklogin:3.4.7"/>
+    <config-file target="res/xml/config.xml" parent="/*"> 
+      <feature name="NTESQuickPassModule"> 
+        <param name="android-package" value="com.netease.nis.quicklogin.cordovaplugin.QuickLoginPlugin"/>  
+        <param name="onload" value="true"/> 
+      </feature> 
+    </config-file>  
+    <config-file target="AndroidManifest.xml" parent="/manifest"> 
+      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>  
+      <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>  
+      <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>  
+      <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>  
+      <uses-permission android:name="android.permission.INTERNET"/>
+    </config-file> 
+  </platform>  
+  <platform name="ios"> 
+    <config-file target="config.xml" parent="/*"> 
+      <feature name="NTESQuickPassModule"> 
+        <param name="ios-package" value="NTESQuickPassModule" onload="true"/> 
+      </feature> 
+    </config-file>  
+    <header-file src="src/ios/NTESQuickPassModule.h"/>  
+    <source-file src="src/ios/NTESQuickPassModule.m"/>
+    <framework src="Network.framework"/>
+    <podspec> 
+      <config> 
+        <source url="https://github.com/CocoaPods/Specs.git"/> 
+      </config>  
+      <pods>
+        <pod name="NTESQuickPass" spec="3.5.6"/>
+      </pods> 
+    </podspec> 
+  </platform> 
+</plugin>

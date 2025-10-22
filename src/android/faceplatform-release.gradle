@@ -1,0 +1,15 @@
+
+repositories{
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'io.github.yidun:quicklogin:3.4.7'
+}
+
+android {
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+}
