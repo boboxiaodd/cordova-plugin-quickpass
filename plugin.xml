@@ -41,7 +41,7 @@
         <source url="https://github.com/CocoaPods/Specs.git"/> 
       </config>  
       <pods>
-        <pod name="NTESQuickPass" spec="3.5.6"/>
+        <pod name="NTESQuickPass" />
       </pods> 
     </podspec> 
   </platform> 
